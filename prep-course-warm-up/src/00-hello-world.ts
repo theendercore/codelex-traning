@@ -14,5 +14,5 @@ export {};
 const helloWorld = function () {
   return "Hello World";
 };
-//p
+
 console.log(helloWorld()); // Expected output: "Hello World"
