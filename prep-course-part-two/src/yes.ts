@@ -36,13 +36,17 @@ class PhoneNumber {
 // console.log(new HighScores(input).personalTopThree);
 // let pn: PhoneNumber = new PhoneNumber("00-00  - 00");
 // console.log(pn.number());
-let checkWords =
-  "I am not gonna live forever, but I wanna live while I am alive"
-    .toLowerCase()
-    .replaceAll(/[^a-z0-9\s ]/gi, "");
 
-const newStr = checkWords.split(" ").reduce((acc: any, rec: any) => {
-  return { ...acc, [rec]: (acc[rec] || 0) + 1 };
-}, {});
+function findShortest(s: string) {
+  return s.split(" ").reduce((acc: any, curr: any) => {
+    if (!acc || curr.length < acc[0].length) {
+      return [curr];
+    }
+    if (curr.length === acc[0].length) {
+      acc.push(curr);
+    }
+    return acc;
+  }, undefined);
+}
 
-console.log(typeof newStr);
+console.log(findShortest("how are you doing this wonderfull coding man"));
