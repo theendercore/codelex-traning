@@ -46,7 +46,7 @@ function findShortest(s: string) {
       acc.push(curr);
     }
     return acc;
-  }, undefined);
+  });
 }
 
 console.log(findShortest("how are you doing this wonderfull coding man"));

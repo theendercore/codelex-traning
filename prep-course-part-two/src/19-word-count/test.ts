@@ -19,7 +19,7 @@ describe("words()", () => {
       fish: 4,
       two: 1,
       red: 1,
-      blue: 1
+      blue: 1,
     };
     expect(words.count("one fish two fish red fish blue fish")).toEqual(
       expectedCounts
@@ -33,7 +33,7 @@ describe("words()", () => {
       carpet: 1,
       as: 1,
       java: 1,
-      "javascript!!&@$%^&": 1
+      "javascript!!&@$%^&": 1,
     };
     expect(words.count("car : carpet as java : javascript!!&@$%^&")).toEqual(
       expectedCounts
@@ -55,7 +55,7 @@ describe("words()", () => {
       "¡hola!": 1,
       "¿qué": 1,
       "tal?": 1,
-      "привет!": 1
+      "привет!": 1,
     };
     expect(words.count("¡Hola! ¿Qué tal? Привет!")).toEqual(expectedCounts);
   });
@@ -90,7 +90,7 @@ describe("words()", () => {
       constructor: 1,
       and: 1,
       tostring: 1,
-      "ok?": 1
+      "ok?": 1,
     };
     expect(
       words.count("reserved words like constructor and toString ok?")
