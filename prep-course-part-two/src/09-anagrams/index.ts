@@ -11,22 +11,17 @@
  * anagrams('RAIL! SAFETY!', 'fairy tales') === true
  * anagrams('Hi there', 'Bye there') === false
  */
+function sortString(str: string) {
+  return str
+    .toLowerCase()
+    .replace(/[^0-9a-z]/gi, "")
+    .split("")
+    .sort()
+    .reduce((a, b) => a + b);
+}
 
 function anagrams(stringA: string, stringB: string) {
-  return (
-    stringA
-      .toLowerCase()
-      .replace(/[^0-9a-z]/gi, "")
-      .split("")
-      .sort()
-      .reduce((a, b) => a + b) ===
-    stringB
-      .toLowerCase()
-      .replace(/[^0-9a-z]/gi, "")
-      .split("")
-      .sort()
-      .reduce((a, b) => a + b)
-  );
+  return sortString(stringA) === sortString(stringB);
 }
 
 export { anagrams };

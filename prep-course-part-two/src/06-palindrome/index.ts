@@ -13,8 +13,8 @@
  * palindrome("abcdefg") === false
  */
 
-function palindrome(str: string) {
-  return str === str.split("").reduceRight((a, b) => a + b) ? true : false;
+function palindrome(str: string): boolean {
+  return str === str.split("").reduceRight((a, b) => a + b);
 }
 
 export { palindrome };

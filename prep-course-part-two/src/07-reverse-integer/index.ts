@@ -14,7 +14,11 @@
 
 function reverse(int: number) {
   return parseInt(
-    (int < 0 ? "-" : "") + int.toString().split("").reverse().join("")
+    (int < 0 ? "-" : "") +
+      int
+        .toString()
+        .split("")
+        .reduceRight((a, b) => a + b)
   );
 }
 

@@ -11,7 +11,7 @@ function parse(input: string) {
     .replace("-", " ")
     .split(" ")
     .map((world) => world.replace(/[^0-9a-z]/gi, "").charAt(0))
-    .reduce((a, b) => a + b)
+    .join("")
     .toUpperCase();
 }
 export { parse };
