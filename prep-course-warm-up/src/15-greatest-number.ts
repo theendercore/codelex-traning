@@ -3,12 +3,9 @@ export {};
 // function greatest(x: number, y: number) {
 //   return x > y ? x : y;
 // }
+
 function greatest(...args: number[]) {
-  let big: number = 0;
-  for (let i = 0; i < args.length; i++) {
-    big = args[i] > big ? args[i] : big;
-  }
-  return big;
+  return Math.max(...args);
 }
 console.log(greatest(1, 2)); // Expected output: 2
 console.log(greatest(5, 2)); // Expected output: 5

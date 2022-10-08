@@ -1,8 +1,7 @@
 export {};
 
-function onlyTheAces(arr: Array<string>) {
-  arr = arr.filter((item) => item === "Ace");
-  return arr;
+function onlyTheAces(arr: string[]) {
+  return arr.filter((item) => item === "Ace");
 }
 
 console.log(onlyTheAces(["Ace", "King", "Queen", "Jack", "Ace"])); // Expected result: ['Ace', 'Ace']

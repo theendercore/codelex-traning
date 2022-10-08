@@ -8,16 +8,16 @@ export {};
  * and recreate the logic yourself.
  */
 
-const map = (arr: any, callback: Function) => {
-  let outArr: any = [];
+function map<T>(arr: T[], callback: Function) {
+  let outArr: T[] = [];
   for (let i = 0; i < arr.length; i++) {
     outArr[i] = callback(arr[i]);
   }
   return outArr;
-};
+}
 
 const numbers = [1, 2, 3];
-const doubled = map(numbers, function (number: any) {
+const doubled = map(numbers, function (number: number) {
   return number * 2;
 });
 console.log(doubled); // Expected result: [2, 4, 6]

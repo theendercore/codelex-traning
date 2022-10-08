@@ -8,11 +8,11 @@ function subtract(a: number, b: number) {
   return a - b;
 }
 
-function sum(arr: any) {
+function sum(arr: number[]) {
   return arr.reduce((a: any, b: any) => a + b);
 }
 
-function multiply(arr: any) {
+function multiply(arr: number[]) {
   return arr.reduce((a: any, b: any) => a * b);
 }
 

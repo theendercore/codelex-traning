@@ -18,14 +18,20 @@ const library = [
   },
 ];
 
-const showStatus = (arr: any) => {
-  for (let i = 0; i < arr.length; i++) {
+interface book {
+  title: string;
+  author: string;
+  isRead: boolean;
+}
+
+const showStatus = (books: book[]) => {
+  books.forEach((book) => {
     console.log(
-      arr[i].isRead
-        ? `Already read '${arr[i].title}' by ${arr[i].author}.`
-        : `You still need to read '${arr[i].title}' by ${arr[i].author}.`
+      book.isRead
+        ? `Already read '${book.title}' by ${book.author}.`
+        : `You still need to read '${book.title}' by ${book.author}.`
     );
-  }
+  });
 };
 
 showStatus(library);

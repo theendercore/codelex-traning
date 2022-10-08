@@ -13,6 +13,7 @@ export {};
  *
  * Temperature should be rounded to one decimal place: i.e., fahrenheitToCelsius(100) should return 37.8 and not 37.77777777777778.
  */
+// const conversionRates: number[][] = [[1, 1, 1], [], []];
 
 const fahrenheitToCelsius = (fer: number) => {
   return (fer - 32) * 1.8;

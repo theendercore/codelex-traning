@@ -11,13 +11,11 @@ export {};
 
 function goThroughNumbers(start: number, end: number) {
   if (start > end) {
-    console.log("invalid input");
-    return;
+    return console.log("invalid input");
   }
   for (let i = start; i < end + 1; i++) {
     console.log(`> ${i} - ${i % 2 == 0 ? "even" : "odd"}`);
   }
-  console.log("\n");
 }
 
 goThroughNumbers(3, 7);

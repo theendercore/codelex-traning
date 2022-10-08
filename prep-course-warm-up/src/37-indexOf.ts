@@ -8,7 +8,7 @@ export {};
  */
 
 // You are allowed to edit only this function
-function remove(arr: any[], valueToRemove: any) {
+function remove<T>(arr: T[], valueToRemove: T) {
   return arr.filter((a) => a != valueToRemove);
 }
 

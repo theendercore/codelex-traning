@@ -11,7 +11,7 @@
 class PhoneNumber {
   private phoneNumber: string;
   constructor(input: string) {
-    this.phoneNumber = input.length > 11 ? "null" : input.replaceAll(/\s/g, "");
+    this.phoneNumber = input.length > 11 ? "null" : input.replace(/\s/g, "");
   }
 
   number() {
@@ -50,5 +50,3 @@ function findShortest(s: string) {
     return acc;
   });
 }
-
-console.log(findShortest("how are you doing this wonderfull coding man"));

@@ -10,7 +10,7 @@ function capitalise(str: string): string {
 }
 
 const mentors = ["/Daniel ", "irina ", " Gordon", "ashleigh "];
-let mentorsTidy: Array<string> = mentors.map((mentor) =>
+let mentorsTidy: string[] = mentors.map((mentor) =>
   capitalise(tidyUpString(mentor))
 );
 console.log(mentorsTidy); // Expected output: ["Daniel", "Irina", "Gordon", "Ashleigh"]

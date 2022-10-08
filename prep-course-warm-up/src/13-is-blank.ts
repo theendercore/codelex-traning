@@ -3,8 +3,8 @@ export {};
 /**
  * Create a function called isBlank, which checks if passed string is blank or not
  */
-function isBlank(input: any): boolean {
-  return input == null || input.trim() == "" ? true : false;
+function isBlank(input: string | null): boolean {
+  return !input || !input.trim();
 }
 
 console.log(isBlank(null)); // Expected output: true

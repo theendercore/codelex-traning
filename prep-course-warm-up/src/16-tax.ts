@@ -13,6 +13,7 @@ export {};
  */
 
 // You are allowed to change only this function
+
 function calculateSalesTax(price: number): number {
   return price * 0.21;
 }

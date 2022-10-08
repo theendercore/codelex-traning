@@ -6,13 +6,8 @@ export {};
 
 function protectEmail(email: string) {
   return (
-    // @ts-ignore: Object is possibly 'null'.
-    /(.{0,6})(?=@)/
-      .exec(email)[0]
-      .slice(0, -3)
-      .concat("...")
-      // @ts-ignore: Object is possibly 'null'.
-      .concat(/@.+/.exec(email)[0])
+    `${email.slice(0, email.indexOf("@")).slice(0, -3)}` +
+    `...${email.slice(email.indexOf("@"))}`
   );
 }
 

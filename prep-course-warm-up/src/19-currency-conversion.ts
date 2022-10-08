@@ -14,24 +14,38 @@ export {};
  * and use them in place of convertToUSD() and convertToBRL()
  */
 
-// You are allowed to change this function
-function convertToOtherCurrency(amount: number, rate: number): number {
-  return amount * rate;
+interface exchangeValue {
+  amount: number;
+  from: string;
+  to: string;
 }
-// You are allowed to change this function
-function convertToBRL(price: number): string {
-  let convertedPrice = convertToOtherCurrency(price, 3.4);
-  return (convertedPrice - convertedPrice * 0.1).toFixed(2);
+// You are allowed to change only this function
+function exchangeCurrency(ev: exchangeValue): number {
+  //Here you would ask a web api to get the exchange rates
+  // return ev.amount * api.latest().getRates([ev.from, ev.to])
+  return ev.amount * 1.4;
 }
 
+//This should be in an exteranl lib by now
+function formatCurrency(num: number) {
+  return num.toFixed(2);
+}
 const product: string = "You don't know JS";
 const price: number = 12.5;
-const priceInUSD: string = convertToOtherCurrency(price, 1.4).toFixed(2);
-const priceInBRL: string = convertToBRL(price);
+const priceInUSD: number = exchangeCurrency({
+  amount: price,
+  from: "GBP",
+  to: "USD",
+});
+const priceInBRL: number = exchangeCurrency({
+  amount: price,
+  from: "GBP",
+  to: "BRL",
+});
 
 console.log("Product: " + product);
-console.log("Price: $" + priceInUSD);
-console.log("Price: R$" + priceInBRL);
+console.log("Price: $" + formatCurrency(priceInUSD));
+console.log("Price: R$" + formatCurrency(priceInBRL));
 
 /* Expected output:
 

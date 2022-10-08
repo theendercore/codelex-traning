@@ -1,10 +1,8 @@
 export {};
 
-const removeFromArray = function (...args: any[]) {
-  let arr: any[] = args[0];
-  args.shift();
-  return arr.filter((a: any) => !args.find((b: any) => b === a));
-};
+function removeFromArray<T>(toFilterArr: T[], ...args: T[]) {
+  return toFilterArr.filter((a) => !args.find((b) => b === a));
+}
 
 console.log(removeFromArray([1, 2, 3, 4], 3)); // Expected output: [1, 2, 4]
 console.log(removeFromArray([1, 2, 3, 4], 7)); // Expected output: [1, 2, 3, 4]
