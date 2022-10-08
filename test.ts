@@ -1,3 +1,5 @@
+// place for testing code
+
 // class HighScores {
 //   scores: number[];
 //   private sortedScores: number[];
