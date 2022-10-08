@@ -18,14 +18,7 @@
 
 function fizzBuzz(n: number) {
   for (let i = 1; i <= n; i++) {
-    let out: string = "";
-    if (i % 3 === 0) {
-      out += "fizz";
-    }
-    if (i % 5 === 0) {
-      out += "buzz";
-    }
-    console.log(out === "" ? i : out);
+    console.log((i % 3 ? "" : "fizz") + (i % 5 ? "" : "buzz") || i);
   }
 }
 
