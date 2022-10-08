@@ -9,17 +9,16 @@
  * vowels('Hello there!') === 4
  */
 
+const VOWELS = ["a", "e", "i", "o", "u"];
+
 function vowels(s: string) {
-  const VOWELS = ["a", "e", "i", "o", "u"];
-  let num: number = 0;
-  s.split("").forEach((letter) =>
-    VOWELS.forEach((vowel) => {
-      if (letter.toLocaleLowerCase() === vowel) {
-        num++;
-      }
-    })
-  );
-  return num;
+  return s
+    .toLowerCase()
+    .split("")
+    .reduce((a, b) => {
+      VOWELS.forEach((v) => (a += v === b ? b : ""));
+      return a;
+    }, "").length;
 }
 
 export { vowels };

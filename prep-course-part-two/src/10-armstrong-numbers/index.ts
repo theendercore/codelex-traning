@@ -12,16 +12,14 @@
  */
 
 function validate(n: number) {
-  let arr = n
-    .toString()
-    .split("")
-    .map((a) => parseInt(a));
-  let sum: number = 0;
-  if (arr.length <= 1) {
-    return true;
-  }
-  arr.forEach((num) => (sum += Math.pow(num, arr.length)));
-  return n === sum;
+  return (
+    n ===
+    n
+      .toString()
+      .split("")
+      .map((a) => parseInt(a))
+      .reduce((a, b) => (a += Math.pow(b, n.toString().length)), 0)
+  );
 }
 
 export { validate };
