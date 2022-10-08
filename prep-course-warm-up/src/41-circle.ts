@@ -46,7 +46,6 @@ function Circle(this: ICircle, radius: number) {
 }
 
 const c = new (Circle as any as ICircleConstructor)(3);
-// console.log(c);
 console.log("Area =", c.area().toFixed(2)); // Expected output: Area = 28.27
 console.log("Perimeter =", c.perimeter().toFixed(2)); // Expected output: Perimeter = 18.85
 
