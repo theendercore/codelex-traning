@@ -1,10 +1,15 @@
 Curretnt progress :
 
-- warmup 1 | finished | polished {33, 35, 40 could be better}
-- warmup 2 | finished | not polished
-- the test | not started | not polished
+- WarmUp 1 | Finished | Polished {33, 35, 40 could be better}
+- WarmUp 2 | Finished | Not Polished
+- The Test | Not Finished | Not Polished
 
 To elaborate on :
 
-- warmup 1:
+- WarmUp 1:
   - Nr 18 & 19
+
+### Errors
+
+- WarUp 2
+  - 18 & 20 might not work (there was an issue with using repeat(0))

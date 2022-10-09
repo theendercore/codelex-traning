@@ -21,7 +21,7 @@
 
 function steps(n: number) {
   for (let i = 0; i < n; i++) {
-    console.log("#".repeat(i + 1) + (n - i ? " ".repeat(n - i - 1) : ""));
+    console.log("#".repeat(i + 1) + " ".repeat(n - i - 1));
   }
 }
 
