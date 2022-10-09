@@ -12,16 +12,14 @@
  * q.remove(); // returns 1
  */
 
-class Queue {
-  private queue: any[] = [];
-  add(n: number) {
+class Queue<T> {
+  private queue: T[] = [];
+  add(n: T) {
     this.queue.push(n);
   }
 
   remove() {
-    let val = this.queue[0];
-    this.queue.shift();
-    return val;
+    return this.queue.shift();
   }
 }
 
