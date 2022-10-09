@@ -34,25 +34,17 @@ class PhoneNumber {
   }
 
   number() {
-    if (this.phoneNumber.length > 11 || this.phoneNumber.length < 10) {
-      return null;
-    }
-    if (this.phoneNumber.length === 11 && !this.phoneNumber.startsWith("1")) {
-      return null;
-    }
-    if (this.phoneNumber.length === 11) {
-      this.phoneNumber = this.phoneNumber.slice(1);
-    }
-    if (this.phoneNumber.startsWith("0") || this.phoneNumber.startsWith("1")) {
-      return null;
-    }
     if (
-      this.phoneNumber.charAt(3) === "0" ||
-      this.phoneNumber.charAt(3) === "1"
+      this.phoneNumber.replace(
+        /(1)?([2-9])(\d{2})([2-9])(\d{2})(\d{4})/gm,
+        ""
+      ) === ""
     ) {
-      return null;
+      return this.phoneNumber.length > 10
+        ? this.phoneNumber.slice(1)
+        : this.phoneNumber;
     }
-    return this.phoneNumber;
+    return null;
   }
 }
 
