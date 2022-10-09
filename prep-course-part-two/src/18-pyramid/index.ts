@@ -17,13 +17,9 @@
  */
 
 function pyramid(n: number) {
-  if (n <= 0) {
-    return;
-  }
   for (let i = 1; i <= n; i++) {
-    let str = n - i ? " ".repeat(n - i) : "";
-    let str2 = "#".repeat(i * 2 - 1);
-    console.log(str + str2 + str);
+    let str = " ".repeat(n - i);
+    console.log(str + `#`.repeat(i * 2 - 1) + str);
   }
 }
 export { pyramid };
