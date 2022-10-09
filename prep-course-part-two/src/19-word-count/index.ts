@@ -1,3 +1,5 @@
+import { parse, stringify } from "ts-jest";
+
 /**
  * Given a phrase, count the occurrences of each word in that phrase.
  *
@@ -11,30 +13,27 @@
 interface WordCounter {
   [Key: string]: number;
 }
-// function setKey(key:string, value: number): void {
 
-// }
-
-const getkey = () => "constructor";
 class Words {
   count(str: string) {
-    let newStr: string = str.toLowerCase().replace(/[\t\n]/gm, " ");
-    let x = newStr.split(" ").reduce((acc: WordCounter, rec: string) => {
-      rec.trim();
-      if (rec === "") {
-        return acc;
-      }
-      return {
-        ...acc,
-        [rec]:
-          ((typeof acc[rec] === "function"
-            ? acc[getkey()]
-              ? 0
-              : acc[getkey()]
-            : acc[rec]) || 0) + 1,
-      };
-    }, {});
-    return x;
+    return parse(
+      stringify(
+        str
+          .toLowerCase()
+          .replace(/[\t\n]/gm, " ")
+          .split(" ")
+          .reduce((acc: WordCounter, rec: string) => {
+            rec.trim();
+            if (rec === "") {
+              return acc;
+            }
+            return {
+              ...acc,
+              [rec + "\t"]: (acc[rec + "\t"] || 0) + 1,
+            };
+          }, {})
+      ).replace(/\\t/gm, "")
+    );
   }
 }
 
