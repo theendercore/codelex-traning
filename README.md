@@ -1,7 +1,7 @@
 Curretnt progress :
 
 - WarmUp 1 | Finished | Polished {33, 35, 40 could be better}
-- WarmUp 2 | Finished | Not Polished
+- WarmUp 2 | Finished | Polished
 - The Test | Not Finished | Not Polished
 
 To elaborate on :
