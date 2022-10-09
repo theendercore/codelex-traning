@@ -40,7 +40,6 @@ class Matrix {
     matrix.split("\n").forEach((a, i) => {
       this.matrix[i] = a.split(" ").map((a) => parseInt(a));
     });
-    // console.table(this.matrix);
   }
 
   get rows() {
