@@ -14,9 +14,9 @@
  * s.pop(); // returns 1
  */
 
-class Stack {
-  private stack: any[] = [];
-  push(n: number) {
+class Stack<T> {
+  private stack: T[] = [];
+  push(n: T) {
     this.stack.unshift(n);
   }
 
