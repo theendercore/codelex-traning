@@ -6,10 +6,8 @@
 
 class HighScores {
   scores: number[];
-  private sortedScores: number[];
   constructor(scores: number[]) {
     this.scores = [...scores];
-    this.sortedScores = scores.sort((a, b) => b - a);
   }
 
   get latest() {
@@ -17,14 +15,16 @@ class HighScores {
   }
 
   get personalBest() {
-    return this.sortedScores[0];
+    return this.sortScores()[0];
   }
 
   get personalTopThree() {
-    return this.scores.length > 3
-      ? this.sortedScores.slice(0, 3)
-      : this.sortedScores;
+    return this.sortScores().slice(0, 3);
   }
+
+  private sortScores = () => {
+    return [...this.scores].sort((a, b) => b - a);
+  };
 }
 
 export { HighScores };
