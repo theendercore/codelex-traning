@@ -22,8 +22,6 @@ To launch the game open terminal and execute command: `npm start`, at the end of
 
 To have tests and application running at the same time, open two terminals.
 
-!["Two Terminals"](./assets/two-terminals.gif)
-
 ## Game Rules
 
 - a game is over when all fields in a row are taken by a player
