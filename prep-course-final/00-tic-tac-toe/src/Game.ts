@@ -37,19 +37,21 @@ export class Game {
       return;
     }
     let winCond = Array(3).fill(this.turn).toString();
+    for (let i = 0; i < 3; i++) {
+      if (
+        [...this.cells].slice(i * 3, 3 + i * 3).toString() === winCond ||
+        `${this.cells[i]},${this.cells[i + 3]},${this.cells[i + 6]}` === winCond
+      ) {
+        this.winner = this.turn;
+        return;
+      }
+    }
     if (
-      [...this.cells].slice(0, 3).toString() === winCond ||
-      [...this.cells].slice(3, 6).toString() === winCond ||
-      [...this.cells].slice(6).toString() === winCond ||
-      `${this.cells[0]},${this.cells[3]},${this.cells[6]}` === winCond ||
-      [this.cells[1], this.cells[4], this.cells[7]].toString() === winCond ||
-      [this.cells[2], this.cells[5], this.cells[8]].toString() === winCond ||
-      [this.cells[0], this.cells[4], this.cells[8]].toString() === winCond ||
-      [this.cells[2], this.cells[4], this.cells[6]].toString() === winCond
+      `${this.cells[0]},${this.cells[4]},${this.cells[8]}` === winCond ||
+      `${this.cells[2]},${this.cells[4]},${this.cells[6]}` === winCond
     ) {
       this.winner = this.turn;
     }
-    // console.log(this.cells.includes("-"));
     this.turn = this.turn == "X" ? "O" : "X";
   }
 
