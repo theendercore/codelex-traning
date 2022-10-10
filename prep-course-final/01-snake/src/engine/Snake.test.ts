@@ -6,6 +6,6 @@ describe("Snake", () => {
     const snake = new Snake();
 
     expect(snake.getHead()).toEqual(new Cell(2, 0));
-    expect(snake.getTail()).toEqual([new Cell(0, 0), new Cell(1, 0)]);
+    expect(snake.getTail()).toEqual([new Cell(1, 0), new Cell(0, 0)]);
   });
 });

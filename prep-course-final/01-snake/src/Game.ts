@@ -11,7 +11,7 @@ export interface RuntimeConfiguration {
 export class Game {
   private runtimeConfiguration: RuntimeConfiguration = {
     level: 0,
-    speed: configuration.defaultSpeed
+    speed: configuration.defaultSpeed,
   };
   private score: number = 0;
   private running = true;
@@ -35,6 +35,7 @@ export class Game {
     switch (this.checkState()) {
       case -1:
         this.die();
+        console.log("it die");
         break;
       case 1:
         this.snake.grow();

@@ -10,8 +10,7 @@ function parse(input: string) {
   return input
     .replace("-", " ")
     .split(" ")
-    .map((world) => world.replace(/[^0-9a-z]/gi, "").charAt(0))
-    .join("")
+    .reduce((a, b) => a + b.replace(/[^0-9a-z]/gi, "").charAt(0), "")
     .toUpperCase();
 }
 export { parse };

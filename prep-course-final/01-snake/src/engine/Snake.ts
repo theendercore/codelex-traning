@@ -2,25 +2,59 @@ import { Cell } from "./Cell";
 import { Direction } from "./Direction";
 
 export class Snake {
-  setDirection(direction: Direction) {}
+  private tail: Cell[];
+  private head: Cell;
+  private dir: Direction;
+  constructor() {
+    this.tail = [new Cell(1, 0), new Cell(0, 0)];
+    this.head = new Cell(2, 0);
+    this.dir = "Down";
+  }
+  setDirection(direction: Direction) {
+    this.dir = direction;
+  }
 
-  move() {}
+  move() {
+    this.tail.unshift(new Cell(this.head.x, this.head.y));
+    this.tail.pop();
+    switch (this.dir) {
+      case "Down":
+        this.head.y++;
+        break;
+      case "Up":
+        this.head.y--;
+        break;
+      case "Right":
+        this.head.x++;
+        break;
+      case "Left":
+        this.head.x--;
+      default:
+        //expload
+        break;
+    }
+  }
 
-  grow() {}
+  grow() {
+    let lastCell = this.tail.at(-1) || new Cell(0, 0);
+    this.tail.push(new Cell(lastCell.x, lastCell.y));
+  }
 
   getHead(): Cell {
-    return new Cell(4, 0);
+    return this.head;
   }
 
   getDirection(): Direction {
-    return "Right";
+    return this.dir;
   }
 
   getTail(): Cell[] {
-    return [new Cell(0, 0), new Cell(2, 0)];
+    return this.tail;
   }
 
   isTakenBySnake(cell: Cell): boolean {
-    return false;
+    return !!this.tail.filter(
+      (snakeBit) => snakeBit.x === cell.x && snakeBit.y === cell.y
+    ).length;
   }
 }
