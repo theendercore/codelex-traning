@@ -2,15 +2,9 @@ import { Cell } from "./Cell";
 import configuration from "../configuration";
 // import
 export class GameField {
-  private apples: Cell[] = [
-    new Cell(18, 15),
-    new Cell(7, 17),
-    new Cell(30, 16),
-    new Cell(24, 20),
-    new Cell(15, 7),
-  ];
+  private apples: Cell[] = [];
   constructor() {
-    // this.seed();
+    this.seed();
   }
 
   /**
@@ -20,12 +14,11 @@ export class GameField {
     for (let i = 0; i < 5; i++) {
       this.apples.push(
         new Cell(
-          this.getRand(configuration.nbCellsX),
-          this.getRand(configuration.nbCellsY)
+          this.getRand(configuration.nbCellsX - 10) + 5,
+          this.getRand(configuration.nbCellsY - 10) + 5
         )
       );
     }
-    console.log(":) leave");
   }
 
   getApples(): Cell[] {
@@ -39,9 +32,7 @@ export class GameField {
   }
 
   removeApple(cell: Cell): void {
-    this.apples = this.apples.filter(
-      (apple) => apple.x !== cell.x && apple.y !== cell.y
-    );
+    this.apples = this.apples.filter((apple) => !apple.compare(cell));
   }
 
   isEmpty(): boolean {

@@ -35,7 +35,7 @@ export class Game {
     switch (this.checkState()) {
       case -1:
         this.die();
-        console.log("it die");
+        console.log("Game Over");
         break;
       case 1:
         this.snake.grow();

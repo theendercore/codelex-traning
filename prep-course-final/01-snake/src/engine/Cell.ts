@@ -6,4 +6,7 @@ export class Cell {
     this.x = x;
     this.y = y;
   }
+  compare(cell: Cell): boolean {
+    return this.x === cell.x && this.y === cell.y;
+  }
 }

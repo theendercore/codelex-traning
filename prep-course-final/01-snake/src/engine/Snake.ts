@@ -8,10 +8,41 @@ export class Snake {
   constructor() {
     this.tail = [new Cell(1, 0), new Cell(0, 0)];
     this.head = new Cell(2, 0);
-    this.dir = "Down";
+    this.dir = "Right";
   }
   setDirection(direction: Direction) {
-    this.dir = direction;
+    if (this.dir === direction) {
+      return;
+    }
+    switch (this.dir) {
+      case "Down":
+        if (direction !== "Up") {
+          this.setDir(direction);
+          return;
+        }
+        break;
+      case "Up":
+        if (direction !== "Down") {
+          this.setDir(direction);
+          return;
+        }
+        break;
+      case "Left":
+        if (direction !== "Right") {
+          this.setDir(direction);
+          return;
+        }
+        break;
+      case "Right":
+        if (direction !== "Left") {
+          this.setDir(direction);
+          return;
+        }
+        break;
+    }
+  }
+  private setDir(d: Direction) {
+    this.dir = d;
   }
 
   move() {
@@ -29,15 +60,15 @@ export class Snake {
         break;
       case "Left":
         this.head.x--;
-      default:
-        //expload
         break;
     }
   }
 
   grow() {
     let lastCell = this.tail.at(-1) || new Cell(0, 0);
-    this.tail.push(new Cell(lastCell.x, lastCell.y));
+    for (let i = 0; i < 3; i++) {
+      this.tail.push(new Cell(lastCell.x, lastCell.y));
+    }
   }
 
   getHead(): Cell {
