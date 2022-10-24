@@ -2,13 +2,11 @@ export type XO = "X" | "O" | "-";
 
 export class Game {
   private cells: XO[] = [];
-  private turn: XO;
-  private winner: XO;
+  private turn: XO = "X";
+  private winner: XO = "-";
   private tie = false;
   constructor() {
     this.clearCells();
-    this.turn = "X";
-    this.winner = "-";
   }
 
   getCells(): XO[] {
