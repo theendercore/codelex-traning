@@ -52,7 +52,7 @@ class GameUI {
 
   constructor() {
     this.minesweeper = new Minesweeper(LEVELS[0]);
-    this.windowWrapperOuter.addEventListener("contextmenu", e =>
+    this.windowWrapperOuter.addEventListener("contextmenu", (e) =>
       e.preventDefault()
     );
     this.resetButton.addEventListener(
@@ -62,6 +62,8 @@ class GameUI {
     this.resetButton.addEventListener("mouseup", () => {
       this.resetButton.className = "face-smile";
       this.minesweeper.reset();
+      this.windowWrapperOuter.style.width =
+        cellWidth * this.minesweeper.columnsCount() + 27 + "px";
       this.draw();
     });
     document.body.addEventListener("click", () => {
@@ -70,13 +72,15 @@ class GameUI {
         this.draw();
       }
     });
-    this.menuLink.addEventListener("click", e => {
+    this.menuLink.addEventListener("click", (e) => {
       e.stopPropagation();
       this.isMenuOpen = !this.isMenuOpen;
       this.draw();
     });
     this.menuNew.addEventListener("click", () => {
       this.minesweeper.reset();
+      this.windowWrapperOuter.style.width =
+        cellWidth * this.minesweeper.columnsCount() + 27 + "px";
       this.draw();
     });
     this.menuBeginner.addEventListener("click", () => {
@@ -122,7 +126,7 @@ class GameUI {
     const div = document.createElement("div");
     div.className = cellClassName(cell);
     minefield.appendChild(div);
-    div.addEventListener("mouseup", e => {
+    div.addEventListener("mouseup", (e) => {
       if (e.which === 3) {
         this.minesweeper.onRightMouseUp(x, y);
       } else {
@@ -130,7 +134,7 @@ class GameUI {
       }
       this.draw();
     });
-    div.addEventListener("mousedown", e => {
+    div.addEventListener("mousedown", (e) => {
       if (e.which === 3) {
         e.stopPropagation();
         return;

@@ -1,14 +1,14 @@
 import { Level } from "./levels";
 
-interface CellCoords {
+interface CellPositions {
   x: number;
   y: number;
 }
 
-const cellLocations: CellCoords[] = [
+const cellPositions: CellPositions[] = [
   { x: -1, y: -1 },
   { x: 0, y: -1 },
-  { x: 0, y: +1 },
+  { x: +1, y: -1 },
   { x: -1, y: 0 },
   { x: +1, y: 0 },
   { x: -1, y: +1 },
@@ -62,25 +62,32 @@ export class Minesweeper {
     return this.cells;
   }
 
-  onLeftMouseDown(x: number, y: number) {
-    let cell = this.cells[x][y];
-    if (cell.isOpen || cell.isFlag || cell.isUnsure || this.endState !== "") {
-      return;
-    }
-    cell.isOpen = true;
-    if (cell.mines === 0) {
-      this.checkCells(x, y);
-    }
-  }
+  onLeftMouseDown(x: number, y: number) {}
 
   onLeftMouseUp(x: number, y: number) {
     let cell = this.cells[x][y];
-    if (cell.isFlag || cell.isUnsure || this.endState !== "") {
+
+    if (cell.isOpen || cell.isFlag || cell.isUnsure || this.endState !== "") {
       return;
     }
-    if (cell.isBomb === true) {
+    if (cell.isBomb) {
       this.endState = "-";
+      this.showAll();
       return;
+    }
+
+    cell.isOpen = true;
+    if (cell.mines === 0) {
+      this.neighborPropagate(x, y);
+    }
+
+    let pm = 0;
+    this.cells.forEach((cells) =>
+      cells.forEach((cell) => (pm += Number(cell.isOpen)))
+    );
+    if (pm + this.level.mines === this.level.columns * this.level.rows) {
+      this.endState = "+";
+      this.showAll();
     }
   }
 
@@ -97,7 +104,13 @@ export class Minesweeper {
       cell.isUnsure = false;
       return;
     }
-    cell.isFlag = !cell.isFlag;
+    if (cell.isFlag) {
+      cell.isFlag = false;
+      this.mines++;
+    } else if (!cell.isFlag) {
+      cell.isFlag = true;
+      this.mines--;
+    }
   }
 
   isTense(): boolean {
@@ -105,7 +118,7 @@ export class Minesweeper {
   }
 
   timePassed(): number {
-    return this.time;
+    return this.time++;
   }
 
   minesLeftCount() {
@@ -145,37 +158,70 @@ export class Minesweeper {
   }
 
   private genCells() {
+    let minesToSet = this.level.mines;
     for (let i = 0; i < this.level.rows; i++) {
       let c: Cell[] = [];
       for (let j = 0; j < this.level.columns; j++) {
-        c.push(
-          new Cell(false, 0, i == 0 && j == 0 ? true : false, false, false)
-        );
+        c.push(new Cell(false, 0, false, false, false));
       }
       this.cells[i] = c;
     }
+
+    while (0 < minesToSet) {
+      let x = Math.floor(Math.random() * this.level.rows);
+      let y = Math.floor(Math.random() * this.level.columns);
+      if (!this.cells[x][y].isBomb) {
+        this.cells[x][y].isBomb = true;
+        this.cells[x][y].mines = -1;
+        minesToSet -= 1;
+      }
+    }
+
+    for (let i = 0; i < this.level.rows; i++) {
+      for (let j = 0; j < this.level.columns; j++) {
+        let cell = this.cells[i][j];
+        if (!cell.isBomb) {
+          cellPositions.forEach((pos) => {
+            let X = i + pos.x;
+            let Y = j + pos.y;
+            if (this.isReal(X, Y) && this.cells[X][Y].isBomb) {
+              cell.mines++;
+            }
+          });
+        }
+      }
+    }
   }
 
-  private checkCells(x: number, y: number) {
-    cellLocations.forEach((loc) => {
-      let X = x + loc.x;
-      let Y = y + loc.y;
+  private neighborPropagate(x: number, y: number) {
+    cellPositions.forEach((pos) => {
+      let X = x + pos.x;
+      let Y = y + pos.y;
       if (
-        this.realNeighbor(X, Y) &&
+        this.isReal(X, Y) &&
         !this.cells[X][Y].isFlag &&
         !this.cells[X][Y].isUnsure &&
-        !this.cells[X][Y].isOpen &&
-        !this.cells[X][Y].isBomb
+        !this.cells[X][Y].isOpen
       ) {
-        this.cells[X][Y].isOpen = true;
-        this.checkCells(X, Y);
+        if (this.cells[X][Y].mines === 0) {
+          this.cells[X][Y].isOpen = true;
+          this.neighborPropagate(X, Y);
+        } else {
+          this.cells[X][Y].isOpen = true;
+        }
       }
     });
   }
-  private realNeighbor(x: number, y: number): boolean {
-    if (x > -1 && x < this.level.columns && y > -1 && y < this.level.rows) {
-      return true;
-    }
-    return false;
+
+  private isReal(x: number, y: number): boolean {
+    return x > -1 && x < this.level.rows && y > -1 && y < this.level.columns
+      ? true
+      : false;
+  }
+
+  private showAll() {
+    this.cells.forEach((cells) => {
+      cells.map((cell) => (cell.isOpen = true));
+    });
   }
 }
